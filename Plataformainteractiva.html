@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignación de Equipos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #21883775;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #892be256;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color:chocolate">Asignación de Equipos</h1>
+        <p style="color:rgb(43, 92, 226)">Ingresa un número del 1 al 4 y una letra de la A a la D para saber tu equipo.</p>
+        
+        <!-- Entrada de datos -->
+        <input type="number" id="numero" placeholder="Número (1-4)" min="1" max="4">
+        <input type="text" id="letra" placeholder="Letra (A-D)" maxlength="1">
+        
+        <!-- Botón para determinar el equipo -->
+        <button onclick="determinarEquipo()">Determinar Equipo</button>
+        
+        <!-- Resultado -->
+        <div class="result" id="resultado"></div>
+
+        <br>
+
+        <a style="color: red" href="EquipoRojo.html" target="_blank">Equipo Rojo</a>
+
+        <a style="color:#218838" href="EquipoVerde.html" target="_blank">Equipo Verde</a>
+
+        <a style="color:blue" href="EquipoAzul.html" target="_blank">Equipo Azul</a>
+
+        <a style="color: yellow" href="EquipoAmarillo.html" target="_blank">Equipo Amarillo</a>
+    </div>
+
+    <script>
+        function determinarEquipo() {
+            // Obtener los valores ingresados
+            const numero = parseInt(document.getElementById("numero").value);
+            const letra = document.getElementById("letra").value.toUpperCase();
+
+            // Validar la entrada
+            if (isNaN(numero) || numero < 1 || numero > 4 || !['A', 'B', 'C', 'D'].includes(letra)) {
+                document.getElementById("resultado").innerHTML = `<span class="error">Por favor, ingresa un número del 1 al 4 y una letra de la A a la D.</span>`;
+                return;
+            }
+
+            // Lógica para determinar el equipo
+            let equipo = "";
+            if (numero === 1 && letra === 'A') {
+                equipo = "Equipo Rojo";
+            } else if (numero === 2 && letra === 'B') {
+                equipo = "Equipo Verde";
+            } else if (numero === 3 && letra === 'C') {
+                equipo = "Equipo Azul";
+            } else if (numero === 4 && letra === 'D') {
+                equipo = "Equipo Amarillo";
+            } else {
+                equipo = "Vuelva a intentar";
+            }
+
+            // Mostrar el resultado
+            document.getElementById("resultado").innerHTML = `Te corresponde el <strong>${equipo}</strong>. Haz click en tu equipo`;
+        }
+    </script>
+</body>
+</html>
